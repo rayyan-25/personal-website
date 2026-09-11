@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: 'Rayyan Sharief — Software Engineer & Data Systems',
   description: 'Personal portfolio of Rayyan Sharief, a software engineer and data analytics student at The Ohio State University.',
   generator: 'v0.app',
+  icons: {
+    icon: '/rayyan-rs-icon.png',
+    shortcut: '/rayyan-rs-icon.png',
+    apple: '/rayyan-rs-icon.png',
+  },
 }
 
 export const viewport: Viewport = {
