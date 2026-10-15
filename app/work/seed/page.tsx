@@ -39,7 +39,7 @@ export default function SeedPage() {
           steps: [
             'The donor chooses a cause and sets a monthly limit.',
             'Seed calculates the round-up on each eligible purchase, up to the next whole dollar. For example, a $6.14 purchase rounds up to $7.00, and the $0.86 difference is added to the donor’s accumulated round-ups.',
-            'Accumulated round-ups are collected by ACH only in a donation the donor authorizes. The monthly limit caps what the donor sends.',
+            'Accumulated round-ups are collected only in a donation the donor authorizes. The monthly limit caps what the donor sends.',
           ],
         },
         {
