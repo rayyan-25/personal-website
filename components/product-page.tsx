@@ -7,14 +7,23 @@ export type ProductSection = {
   steps?: string[]
 }
 
+export type ProductScreenshot = {
+  src: string
+  alt: string
+  caption: string
+  aspectRatio: string
+}
+
 export function ProductPage({
   product,
   title,
   sections,
+  screenshots = [],
 }: {
   product: ProductDetail
   title: string
   sections: ProductSection[]
+  screenshots?: ProductScreenshot[]
 }) {
   return (
     <main id="main" className="container product-page">
@@ -33,6 +42,22 @@ export function ProductPage({
           </p>
         </div>
       </header>
+
+      {screenshots.length > 0 ? (
+        <figure className="product-gallery">
+          {screenshots.map((shot) => (
+            <div key={shot.src} className="product-shot">
+              <img
+                src={shot.src}
+                alt={shot.alt}
+                loading="lazy"
+                style={{ aspectRatio: shot.aspectRatio }}
+              />
+              <figcaption>{shot.caption}</figcaption>
+            </div>
+          ))}
+        </figure>
+      ) : null}
 
       {sections.map((section) => (
         <section key={section.heading} className="product-section" aria-labelledby={`${product.slug}-${slugify(section.heading)}`}>

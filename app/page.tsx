@@ -1,6 +1,14 @@
 import Link from 'next/link'
 import { CopyEmail } from '@/components/copy-email'
-import { experiences, grub, profile, seed, selectedWork, skillGroups } from '@/lib/portfolio-data'
+import {
+  earlierExperiences,
+  experiences,
+  grub,
+  profile,
+  seed,
+  selectedWork,
+  skillGroups,
+} from '@/lib/portfolio-data'
 
 export default function HomePage() {
   return (
@@ -74,9 +82,9 @@ export default function HomePage() {
             <h3 id="seed-heading">{seed.name}</h3>
             <p className="product-tagline">{seed.tagline}</p>
             <p>
-              Seed rounds each eligible purchase up to the next whole dollar and sets the spare change aside for
-              a cause the donor chooses. Donors set a monthly limit, so giving stays predictable. Round-ups are
-              voluntary sadaqah, not zakat.
+              Seed calculates a round-up on each eligible purchase, up to the next whole dollar, and accumulates
+              those amounts for a cause the donor chooses. Money is collected only in a donation the donor
+              authorizes, within a monthly limit the donor sets. Round-ups are voluntary sadaqah, not zakat.
             </p>
             <div className="actions">
               <Link className="button button-primary" href="/work/seed">
@@ -139,6 +147,26 @@ export default function HomePage() {
             </li>
           ))}
         </ol>
+        <div className="earlier-experience">
+          <h3 className="subhead">Earlier experience</h3>
+          <ul className="earlier-list">
+            {earlierExperiences.map((job) => (
+              <li key={job.id} className="earlier-row">
+                <p className="earlier-title">
+                  {job.role}, <span>{job.company}</span>
+                </p>
+                <p className="earlier-meta">
+                  {job.dates} · {job.location}
+                </p>
+                <ul>
+                  {job.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section id="about" className="section container about" aria-labelledby="about-heading">

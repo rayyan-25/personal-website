@@ -19,6 +19,14 @@ export default function SeedPage() {
     <ProductPage
       product={seed}
       title="Seed turns everyday purchases into giving"
+      screenshots={[
+        {
+          src: '/projects/seed/reconciliation-signup.png',
+          alt: 'Seed account sign-up form at step 3 of 6, with empty name, email, and password fields',
+          caption: 'Early access sign-up. Shown with empty fields, with no personal details.',
+          aspectRatio: '319 / 817',
+        },
+      ]}
       sections={[
         {
           heading: 'The problem',
@@ -30,8 +38,8 @@ export default function SeedPage() {
           heading: 'How it works',
           steps: [
             'The donor chooses a cause and sets a monthly limit.',
-            'Each eligible purchase rounds up to the next whole dollar. For example, a $6.14 purchase rounds up to $7.00, and the $0.86 difference goes toward giving.',
-            'Donations are funded by ACH, and the monthly limit caps what the donor sends.',
+            'Seed calculates the round-up on each eligible purchase, up to the next whole dollar. For example, a $6.14 purchase rounds up to $7.00, and the $0.86 difference is added to the donor’s accumulated round-ups.',
+            'Accumulated round-ups are collected by ACH only in a donation the donor authorizes. The monthly limit caps what the donor sends.',
           ],
         },
         {
@@ -49,7 +57,7 @@ export default function SeedPage() {
         {
           heading: 'Current stage',
           paragraphs: [
-            'Seed is pre-launch. Sign-ups are open for news and early access. Live giving starts after payments and organization verification are complete.',
+            'Seed is pre-launch, and early access sign-ups are open. Live giving begins once payments and organization verification are in place.',
           ],
         },
       ]}

@@ -19,6 +19,20 @@ export default function GrubPage() {
     <ProductPage
       product={grub}
       title="Clips connects food creators to the restaurant they are reviewing"
+      screenshots={[
+        {
+          src: '/projects/grub/creator-feed-dark.jpg',
+          alt: 'Creator Studio screen listing review posts with their status, verified numbers, and earned discount, using test data',
+          caption: 'Creator Studio: post status and verified numbers. Illustrative test posts from the QA build.',
+          aspectRatio: '780 / 1688',
+        },
+        {
+          src: '/projects/grub/reel-card-dark.jpg',
+          alt: 'Clips reel card for a test restaurant review, with a button that opens the restaurant',
+          caption: 'Clips: a review reel linked to its restaurant. Test content, not a real review.',
+          aspectRatio: '780 / 1688',
+        },
+      ]}
       sections={[
         {
           heading: 'The problem',
@@ -43,7 +57,7 @@ export default function GrubPage() {
         {
           heading: 'Current stage',
           paragraphs: [
-            'Grub is in development and launching first in Columbus. The website does not accept Clip submissions yet, and this page will be updated as features launch.',
+            'Grub is in development and launching first in Columbus. This page will be updated as features launch.',
           ],
         },
       ]}
