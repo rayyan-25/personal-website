@@ -1,4 +1,5 @@
 import { profile } from '@/lib/portfolio-data'
+import { MobileMenu } from '@/components/mobile-menu'
 
 const links = [
   { href: '/#work', label: 'Work' },
@@ -27,8 +28,7 @@ export function SiteHeader() {
           </a>
         </nav>
 
-        <details className="nav-mobile">
-          <summary>Menu</summary>
+        <MobileMenu>
           <nav aria-label="Mobile">
             {links.map((link) => (
               <a key={link.href} href={link.href}>
@@ -37,7 +37,7 @@ export function SiteHeader() {
             ))}
             <a href={profile.resumePath}>Resume (PDF)</a>
           </nav>
-        </details>
+        </MobileMenu>
       </div>
     </header>
   )
