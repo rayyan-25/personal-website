@@ -16,16 +16,14 @@ export default function HomePage() {
       <section className="hero container" aria-labelledby="hero-heading">
         <p className="eyebrow">Software engineer and product builder · {profile.location}</p>
         <h1 id="hero-heading" className="hero-name">
-          Rayyan Sharief
+          Rayyan<br /><em>Sharief.</em>
         </h1>
         <p className="lede">
-          I build backend systems, fintech infrastructure, and AI workflows, and I am building consumer
-          products of my own. I am a software engineer intern at Wahed Invest and a Data Analytics student
-          at The Ohio State University, expected December 2027.
+          I build backend systems, fintech infrastructure, and products of my own.
         </p>
         <p className="lede-secondary">
-          My current products are Grub, a food discovery app built around creator restaurant videos, and
-          Seed, a round-up app for automatic giving. Both are under Aura Labs.
+          Software engineer intern at Wahed Invest. Data Analytics at Ohio State.
+          Building Grub and Seed under Aura Labs.
         </p>
         <div className="actions">
           <a className="button button-primary" href="#work">
@@ -38,12 +36,16 @@ export default function HomePage() {
             Email me
           </a>
         </div>
+        <div className="hero-socials">
+          <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        </div>
       </section>
 
       <section id="work" className="section container" aria-labelledby="work-heading">
         <header className="section-head">
-          <p className="eyebrow">Products</p>
-          <h2 id="work-heading">Two products I am building</h2>
+          <p className="eyebrow"><span>01 /</span> Products</p>
+          <h2 id="work-heading">What I am<br /><em>building.</em></h2>
         </header>
 
         <article className="product product-flagship" aria-labelledby="grub-heading">
@@ -124,8 +126,8 @@ export default function HomePage() {
 
       <section id="experience" className="section container" aria-labelledby="experience-heading">
         <header className="section-head">
-          <p className="eyebrow">Experience</p>
-          <h2 id="experience-heading">Internships and engineering roles</h2>
+          <p className="eyebrow"><span>02 /</span> Experience</p>
+          <h2 id="experience-heading">Where I have<br /><em>worked.</em></h2>
         </header>
         <ol className="experience-list">
           {experiences.map((job) => (
@@ -171,8 +173,8 @@ export default function HomePage() {
 
       <section id="about" className="section container about" aria-labelledby="about-heading">
         <header className="section-head">
-          <p className="eyebrow">About</p>
-          <h2 id="about-heading">How I work</h2>
+          <p className="eyebrow"><span>03 /</span> About</p>
+          <h2 id="about-heading">A little<br /><em>about me.</em></h2>
         </header>
         <div className="about-body">
           <p>
@@ -209,7 +211,7 @@ export default function HomePage() {
       <section id="contact" className="section container contact" aria-labelledby="contact-heading">
         <header className="section-head">
           <p className="eyebrow">Contact</p>
-          <h2 id="contact-heading">Get in touch</h2>
+          <h2 id="contact-heading">Let&apos;s<br /><em>connect.</em></h2>
         </header>
         <p className="contact-lede">
           Email is the best way to reach me about roles, collaborations, or products.
@@ -239,3 +241,4 @@ export default function HomePage() {
     </main>
   )
 }
+
