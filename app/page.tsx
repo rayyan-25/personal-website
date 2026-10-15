@@ -1,46 +1,213 @@
-'use client'
+import Link from 'next/link'
+import { CopyEmail } from '@/components/copy-email'
+import { experiences, grub, profile, seed, selectedWork, skillGroups } from '@/lib/portfolio-data'
 
-import { useEffect, useState } from 'react'
+export default function HomePage() {
+  return (
+    <main id="main">
+      <section className="hero container" aria-labelledby="hero-heading">
+        <p className="eyebrow">Software engineer and product builder · {profile.location}</p>
+        <h1 id="hero-heading" className="hero-name">
+          Rayyan Sharief
+        </h1>
+        <p className="lede">
+          I build backend systems, fintech infrastructure, and AI workflows, and I am building consumer
+          products of my own. I am a software engineer intern at Wahed Invest and a Data Analytics student
+          at The Ohio State University, expected December 2027.
+        </p>
+        <p className="lede-secondary">
+          My current products are Grub, a food discovery app built around creator restaurant videos, and
+          Seed, a round-up app for automatic giving. Both are under Aura Labs.
+        </p>
+        <div className="actions">
+          <a className="button button-primary" href="#work">
+            See my work
+          </a>
+          <a className="button button-secondary" href={profile.resumePath}>
+            Resume (PDF)
+          </a>
+          <a className="button button-text" href={`mailto:${profile.email}`}>
+            Email me
+          </a>
+        </div>
+      </section>
 
-const resumeUrl = 'https://blobs.vusercontent.net/blob/Rayyan%20S%20Resume-Qmex5I0ondFy6yvAvALyu8W1vSNIJs.pdf'
-const email = 'rsharief1225@gmail.com'
+      <section id="work" className="section container" aria-labelledby="work-heading">
+        <header className="section-head">
+          <p className="eyebrow">Products</p>
+          <h2 id="work-heading">Two products I am building</h2>
+        </header>
 
-type Experience = { date: string; role: string; company: string; team: string; location: string; bullets: string[]; tech: string[] }
-const experience: Experience[] = [
-  { date: 'August 2026 – Present', role: 'Software Engineer Intern', company: 'Wahed Invest', team: 'Private Markets', location: 'London, UK · Remote', bullets: ['Built iwaqf.io, a full-stack endowment platform managing £741K across 1,718 waqfs, engineering Stripe webhook processing and idempotent settlement systems across 22K+ transactions with Supabase and RLS-secured RPCs.', 'Architected the backend for Wahed Private Markets, an extension of Wahed’s platforms serving 400,000+ investors, designing PostgreSQL schemas and Row-Level Security for deposit and redemption flows.'], tech: ['PostgreSQL', 'Supabase', 'Stripe', 'RLS'] },
-  { date: 'February 2026 – July 2026', role: 'Data Science Intern', company: 'BMW Group Financial Services', team: 'IT Data/AI Engineering', location: 'Columbus, OH', bullets: ['Saved 15+ hours weekly by engineering Request2PO, a Power Apps and SharePoint automation platform that centralized PO workflows, vendor routing, approvals, and status tracking across teams.', 'Reduced projected operational costs by $400K+ annually by helping develop AI-driven insurance valuation and funding verification systems using VIN analysis, ID validation, and workflow automation.', 'Built enterprise AI applications using GAIA, conversational AI systems, n8n, and AWS SageMaker pipelines to automate document search, dealer analytics, and scalable internal AI workflows.'], tech: ['GAIA', 'AWS SageMaker', 'n8n', 'Power Apps', 'SharePoint'] },
-  { date: 'September 2025 – January 2026', role: 'Data Analytics Intern', company: 'Ohio Department of Transportation', team: 'Rail Division', location: 'Columbus, OH', bullets: ['Conducted a case study on ORDC workflow bottlenecks and built an AI assistant to automate repetitive tasks, streamline Salesforce reports, and centralize process guidance.', 'Saved $20K+ annually by migrating forms and workflows into Salesforce, automating statewide rail reporting.', 'Migrated 42 Salesforce workflows to Flow Builder and validated deployments in Sandbox environments.'], tech: ['Salesforce', 'Flow Builder', 'Data Analytics'] },
-  { date: 'June 2024 – August 2024', role: 'Software Engineer Intern', company: 'JPMorgan Chase & Co.', team: 'Asset & Wealth Management', location: 'Columbus, OH', bullets: ['Saved 10+ team hours weekly by designing and launching DocDoctor, an AWS-based Node.js/React.js platform that accelerated document retrieval through DynamoDB across 1M+ records.', 'Reduced latency by 40% through refactoring data flows and integrating structured and unstructured data sources into React dashboards, improving accessibility for multiple engineering teams.', 'Enhanced reliability with CI/CD (Git, Jenkins, Docker) and automated testing, quickening release times.'], tech: ['AWS', 'DynamoDB', 'Node.js', 'React', 'Jenkins', 'Docker'] },
-  { date: 'January 2024 – May 2024', role: 'Developer & Business Analyst', company: 'EDI Matrix', team: 'Engineering & Operations', location: 'Columbus, OH', bullets: ['Enhanced system performance and scalability for 1K+ users by helping engineer STARS 2.0, an enterprise CRM and sales-tracking platform for restaurant operations.', 'Built analytics modules and data synchronization services using PostgreSQL and Sage APIs, enabling real-time forecasting, pipeline visibility, and compliance tracking across departments.', 'Automated reporting and dashboards, cutting manual processing by 15+ hours per month and improving accuracy.'], tech: ['PostgreSQL', 'Sage APIs', 'CRM', 'Analytics'] },
-  { date: 'June 2023 – August 2023', role: 'Information Technology Intern', company: 'PAST Foundation', team: 'IT Operations', location: 'Columbus, OH', bullets: ['Supported IT operations for 100+ systems, applying CompTIA A+ principles to real-world troubleshooting.', 'Improved ticket resolution speed 25% by analyzing recurring issues and streamlining support workflows.', 'Contributed to data-driven research initiatives, enhancing IT efficiency and client delivery outcomes.'], tech: ['IT Operations', 'CompTIA A+', 'Troubleshooting', 'Research'] },
-]
+        <article className="product product-flagship" aria-labelledby="grub-heading">
+          <div className="product-mark">
+            <img src={grub.logo} alt={grub.logoAlt} width={112} height={112} />
+          </div>
+          <div className="product-body">
+            <p className="product-status">Flagship · {grub.status}</p>
+            <h3 id="grub-heading">{grub.name}</h3>
+            <p className="product-tagline">{grub.tagline}</p>
+            <p>
+              Clips is the center of Grub. Creators submit restaurant review videos, Grub links each video to
+              the specific restaurant branch it covers, and viewers can open that restaurant from the video.
+              Restaurant and dish information appears where it is available, including halal details where they
+              exist. Grub does not certify food, and a video is never treated as proof that a restaurant is
+              halal.
+            </p>
+            <div className="actions">
+              <Link className="button button-primary" href="/work/grub">
+                Read the Grub case study
+              </Link>
+              <a className="button button-text" href={grub.website} target="_blank" rel="noopener noreferrer">
+                Visit usegrub.app
+                <span className="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </div>
+          </div>
+        </article>
 
-const projects = [
-  { title: 'Swyft Payments', label: 'Co-founder', href: 'https://www.paywithswyft.com', kind: 'swyft', headline: 'Making donations as simple as a tap.', description: 'NFC donation technology for nonprofits and community organizations.', facts: [['2.5K+', 'donors'], ['$30K+', 'raised'], ['<2 sec', 'donations']], tags: ['NFC', 'Raspberry Pi', 'C/C++', 'SQL', 'WorldPay'] },
-  { title: 'iWaqf', label: 'Wahed Invest', href: 'https://iwaqf.io', kind: 'iwaqf', headline: 'Give once. Give forever.', description: 'A digital platform for creating and managing charitable endowments.', facts: [['£741K+', 'endowment assets'], ['1.7K+', 'waqfs'], ['22K+', 'transactions']], tags: [] },
-  { title: 'HOPE AI', label: 'Research project', href: '#contact', kind: 'hope', headline: 'A faith-informed mental health companion developed alongside a multidisciplinary research team.', description: '', facts: [], tags: ['OpenAI', 'Supabase', 'Multi-Agent AI'] },
-  { title: 'PlanMyDegree', label: 'Ohio State project', href: '#contact', kind: 'plan', headline: 'A degree-planning tool built with a six-person team for Ohio State students.', description: '', facts: [['500+', 'students']], tags: ['Flask', 'MySQL', 'JavaScript'] },
-]
-const skills = [['Programming', 'Python · JavaScript · React · Node.js · Java · C++'], ['Data', 'SQL · PostgreSQL · Pandas · NumPy · R · Power BI'], ['AI / Cloud', 'AWS · SageMaker · OpenAI · Dataiku'], ['Tools', 'Supabase · Docker · Git · Salesforce · Power Apps']]
+        <article className="product product-seed" aria-labelledby="seed-heading">
+          <div className="product-mark">
+            <img src={seed.logo} alt={seed.logoAlt} width={112} height={112} />
+          </div>
+          <div className="product-body">
+            <p className="product-status">{seed.status}</p>
+            <h3 id="seed-heading">{seed.name}</h3>
+            <p className="product-tagline">{seed.tagline}</p>
+            <p>
+              Seed rounds each eligible purchase up to the next whole dollar and sets the spare change aside for
+              a cause the donor chooses. Donors set a monthly limit, so giving stays predictable. Round-ups are
+              voluntary sadaqah, not zakat.
+            </p>
+            <div className="actions">
+              <Link className="button button-primary" href="/work/seed">
+                Read the Seed product page
+              </Link>
+              <a className="button button-text" href={seed.website} target="_blank" rel="noopener noreferrer">
+                Visit givewithseed.com
+                <span className="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </div>
+          </div>
+        </article>
 
-function ProductVisual({ kind }: { kind: string }) {
-  const content: Record<string, { eyebrow: string; title: string; rows: string[] }> = { swyft: { eyebrow: 'PAYWITHSWYFT.COM', title: 'Tap to give', rows: ['NFC donation stand', '$30,000+ raised', 'Thank you for giving'] }, iwaqf: { eyebrow: 'IWAQF.IO', title: 'Your waqf', rows: ['Endowment assets', 'Beneficiary allocation', 'Transaction settled'] }, hope: { eyebrow: 'HOPE AI', title: 'A thoughtful companion', rows: ['Faith + culture', 'Research team', 'Private reflection'] }, plan: { eyebrow: 'PLANMYDEGREE', title: 'Your degree map', rows: ['Requirements', 'Prerequisites', 'Progress'] } }
-  const item = content[kind]
-  return <div className={`product-visual visual-${kind}`} aria-hidden="true"><div className="visual-browser"><div className="browser-bar"><i /><i /><i /><span>{item.eyebrow}</span></div><div className="browser-screen"><small>{item.eyebrow}</small><strong>{item.title}</strong>{item.rows.map((row) => <div className="visual-row" key={row}><span>{row}</span><b>↗</b></div>)}</div></div></div>
-}
+        <div className="more-work">
+          <h3 className="subhead">Other work</h3>
+          <ul className="work-list">
+            {selectedWork.map((item) => (
+              <li key={item.name} className="work-row">
+                <div className="work-name">
+                  <p className="work-title">{item.name}</p>
+                  <p className="work-kind">{item.kind}</p>
+                </div>
+                <div className="work-detail">
+                  <p>{item.description}</p>
+                  {item.href ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer">
+                      {item.hrefLabel}
+                      <span className="visually-hidden"> (opens in a new tab)</span>
+                    </a>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-export default function Page() {
-  const [light, setLight] = useState(false), [menuOpen, setMenuOpen] = useState(false), [copied, setCopied] = useState(false), [nowOpen, setNowOpen] = useState(false)
-  useEffect(() => { document.documentElement.classList.toggle('light', light); const observer = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('is-visible')), { threshold: 0.12 }); document.querySelectorAll('.reveal').forEach((element) => observer.observe(element)); return () => observer.disconnect() }, [light])
-  async function copyEmail() { await navigator.clipboard.writeText(email); setCopied(true); window.setTimeout(() => setCopied(false), 1800) }
-  const nav = (id: string) => { setMenuOpen(false); return id }
-  return <main id="top">
-    <nav className="site-nav"><a className="brand" href="#top">RS<span>.</span></a><div className={`nav-center ${menuOpen ? 'is-open' : ''}`}><a href="#experience" onClick={() => nav('experience')}>Experience</a><a href="#projects" onClick={() => nav('projects')}>Projects</a><a href="#about" onClick={() => nav('about')}>About</a><a href="#contact" onClick={() => nav('contact')}>Contact</a></div><div className="nav-actions"><a className="resume-pill" href={resumeUrl} target="_blank" rel="noreferrer">Resume <span>↓</span></a><button className="theme-button" onClick={() => setLight(!light)} aria-label="Toggle dark/light mode">{light ? '☾' : '☼'}</button><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}><i /><i /><i /></button></div></nav>
-    <section className="hero-section"><div className="hero-inner reveal"><h1>Hi, I&apos;m <span>Rayyan.</span></h1><p className="hero-copy">Software engineer, founder, and Data Analytics student at Ohio State.</p><div className="now-wrap"><button className="now-pill" onClick={() => setNowOpen(!nowOpen)} aria-expanded={nowOpen}><span className="status-dot" /> currently @ Wahed <b>+</b></button>{nowOpen && <div className="now-card"><small>right now</small><span><b>work</b>Wahed Invest</span><span><b>building</b>Swyft</span><span><b>based</b>Columbus, OH</span></div>}</div><div className="hero-cta"><a className="primary-cta" href="#experience">View my work <span>↘</span></a><a className="secondary-cta" href="#about">About me <span>↓</span></a></div><div className="hero-socials"><a href="https://github.com/rayyan-25" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/rayyan-sharief-787919299/" target="_blank" rel="noreferrer">LinkedIn ↗</a><button onClick={copyEmail}>{copied ? 'Copied' : 'Email ↗'}</button></div></div></section>
-    <section id="experience" className="content-section experience-section"><div className="section-index reveal">01 <span>/</span> experience</div><div className="section-body"><div className="section-title reveal"><h2>Experience</h2></div><div className="experience-list">{experience.map((item) => <div className="experience-item reveal is-open" key={item.company}><div className="experience-trigger"><span className="experience-date">{item.date}</span><span className="experience-main"><strong>{item.company}</strong><small>{item.role}</small></span><span className="experience-plus">−</span></div><div className="experience-details"><p>{item.team} · {item.location}</p><ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul><div className="experience-tech">{item.tech.map((tech) => <span key={tech}>{tech}</span>)}</div></div></div>)}</div></div></section>
-    <section id="projects" className="content-section projects-section"><div className="section-index reveal">02 <span>/</span> projects</div><div className="section-body"><div className="section-title reveal"><h2>Projects</h2></div><div className="project-grid">{projects.map((project, index) => <a className={`project-card project-${index + 1} reveal`} href={project.href} target={project.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" key={project.title}><ProductVisual kind={project.kind} /><div className="project-card-body"><div className="project-card-top"><span>{project.label}</span><span>↗</span></div><h3>{project.title}</h3><h4>{project.headline}</h4>{project.description && <p className="project-description">{project.description}</p>}<div className="project-facts">{project.facts.map(([value, label]) => <span key={label}><b>{value}</b>{label}</span>)}</div>{project.tags.length > 0 && <div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}<p className="project-link">{project.href.startsWith('http') ? 'Visit site' : 'Explore'} <span>↗</span></p></div></a>)}</div></div></section>
-    <section id="about" className="content-section about-section"><div className="section-index reveal">03 <span>/</span> about</div><div className="section-body about-body"><div className="section-title reveal"><p>About</p><h2>A little<br /><em>about me.</em></h2></div><div className="about-copy reveal"><p>I&apos;m a Data Analytics student at Ohio State with a strong interest in software, data, finance, fintech, and AI. I co-founded Swyft Payments, which has been one of the biggest ways I&apos;ve learned how to take an idea, build the product, and think about the business behind it. I&apos;ve also had the chance to work across those areas through roles at Wahed, BMW, JPMorgan Chase, and the Ohio Department of Transportation where I&apos;ve worked on everything from financial technology and backend systems to AI tools and data automation.</p><p>Outside of school and work, I&apos;m usually learning more about technology and finance, working on another idea, traveling when I get the chance, or playing soccer. I also like staying involved in my community and things that give me something new to figure out.</p><div className="about-details"><span>Columbus, Ohio</span><span>Ohio State</span><span>Co-founder · Swyft</span></div></div></div></section>
-    <section className="content-section toolkit-section"><div className="section-index reveal">04 <span>/</span> skills</div><div className="section-body"><div className="section-title reveal"><p>Skills</p><h2>What I<br /><em>use.</em></h2></div><div className="skills-list">{skills.map(([title, list]) => <div className="skill-row reveal" key={title}><span>{title}</span><p>{list}</p></div>)}</div></div></section>
-    <section id="contact" className="contact-section"><div className="contact-inner reveal"><p className="hero-kicker">Contact</p><h2>Let&apos;s<br /><em>connect.</em></h2><button className="email-link" onClick={copyEmail}>{copied ? 'Email copied' : 'Email'} <span>↗</span></button><div className="socials"><a href="https://www.linkedin.com/in/rayyan-sharief-787919299/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/rayyan-25" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></section><footer><span>© 2026 Rayyan Sharief</span><span /><a href="#top">Back to top ↑</a></footer>
-  </main>
+      <section id="experience" className="section container" aria-labelledby="experience-heading">
+        <header className="section-head">
+          <p className="eyebrow">Experience</p>
+          <h2 id="experience-heading">Internships and engineering roles</h2>
+        </header>
+        <ol className="experience-list">
+          {experiences.map((job) => (
+            <li key={job.id} className="experience-row">
+              <div className="experience-meta">
+                <p className="experience-dates">{job.dates}</p>
+                <p className="experience-location">{job.location}</p>
+              </div>
+              <div className="experience-body">
+                <h3>
+                  {job.role}, <span>{job.company}</span>
+                </h3>
+                <ul>
+                  {job.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="about" className="section container about" aria-labelledby="about-heading">
+        <header className="section-head">
+          <p className="eyebrow">About</p>
+          <h2 id="about-heading">How I work</h2>
+        </header>
+        <div className="about-body">
+          <p>
+            I am a Data Analytics student at The Ohio State University who learns best by taking hard problems
+            all the way to production. Most of my work sits where money, data, and users meet: settlement flows,
+            ledgers, access rules for financial data, and tools that help teams make decisions.
+          </p>
+          <p>
+            Across internships at Wahed Invest, BMW Group Financial Services, JPMorgan Chase &amp; Co., and the
+            Ohio Department of Transportation, I have worked across backend engineering, data analysis, and
+            enterprise automation. That ranges from idempotent Stripe settlement to AWS SageMaker pipelines for
+            document search.
+          </p>
+          <p>
+            Outside of school and work, I build products under Aura Labs, an independent company based in
+            Columbus. I care about what a product does for the person using it, and I want the business and
+            technical decisions to hold up together. When I am not building, I play soccer and travel.
+          </p>
+        </div>
+
+        <div className="skills">
+          <h3 className="subhead">Skills</h3>
+          <dl className="skill-groups">
+            {skillGroups.map((group) => (
+              <div key={group.label} className="skill-group">
+                <dt>{group.label}</dt>
+                <dd>{group.items.join(', ')}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section id="contact" className="section container contact" aria-labelledby="contact-heading">
+        <header className="section-head">
+          <p className="eyebrow">Contact</p>
+          <h2 id="contact-heading">Get in touch</h2>
+        </header>
+        <p className="contact-lede">
+          Email is the best way to reach me about roles, collaborations, or products.
+        </p>
+        <a className="contact-email" href={`mailto:${profile.email}`}>
+          {profile.email}
+        </a>
+        <CopyEmail email={profile.email} />
+        <ul className="contact-links">
+          <li>
+            <a href={profile.github} target="_blank" rel="noopener noreferrer">
+              GitHub
+              <span className="visually-hidden"> (opens in a new tab)</span>
+            </a>
+          </li>
+          <li>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+              <span className="visually-hidden"> (opens in a new tab)</span>
+            </a>
+          </li>
+          <li>
+            <a href={profile.resumePath}>Resume (PDF)</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  )
 }

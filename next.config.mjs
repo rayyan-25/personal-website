@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  output: 'export',
+  // Each route becomes <route>/index.html so any static host serves it directly.
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
