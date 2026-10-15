@@ -1,96 +1,18 @@
-import Link from 'next/link'
 import type { ProductDetail } from '@/lib/portfolio-data'
+import { Arrow } from '@/components/visuals'
+import { Motion } from '@/components/motion'
 
-export type ProductSection = {
-  heading: string
-  paragraphs?: string[]
-  steps?: string[]
-}
-
-export type ProductScreenshot = {
-  src: string
-  alt: string
-  caption: string
-  aspectRatio: string
-}
-
-export function ProductPage({
-  product,
-  title,
-  sections,
-  screenshots = [],
-}: {
-  product: ProductDetail
-  title: string
-  sections: ProductSection[]
-  screenshots?: ProductScreenshot[]
-}) {
+export type ProductSection = { heading: string; paragraphs?: string[]; steps?: string[] }
+export function ProductPage({ product, title, titleAccent, sections, focus }: { product: ProductDetail; title: string; titleAccent: string; sections: ProductSection[]; focus: string }) {
+  const other = product.slug === 'seed' ? { slug: 'grub', name: 'Grub' } : { slug: 'seed', name: 'Seed' }
   return (
-    <main id="main" className="container product-page">
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <Link href="/#work">Back to work</Link>
-      </nav>
-
-      <header className="product-hero">
-        <img className="product-hero-mark" src={product.logo} alt={product.logoAlt} width={96} height={96} />
-        <div>
-          <p className="eyebrow">Product · {product.name}</p>
-          <h1>{title}</h1>
-          <p className="lede">{product.summary}</p>
-          <p className="product-status-line">
-            <strong>Status:</strong> {product.status}
-          </p>
-        </div>
-      </header>
-
-      {screenshots.length > 0 ? (
-        <figure className="product-gallery">
-          {screenshots.map((shot) => (
-            <div key={shot.src} className="product-shot">
-              <img
-                src={shot.src}
-                alt={shot.alt}
-                loading="lazy"
-                style={{ aspectRatio: shot.aspectRatio }}
-              />
-              <figcaption>{shot.caption}</figcaption>
-            </div>
-          ))}
-        </figure>
-      ) : null}
-
-      {sections.map((section) => (
-        <section key={section.heading} className="product-section" aria-labelledby={`${product.slug}-${slugify(section.heading)}`}>
-          <h2 id={`${product.slug}-${slugify(section.heading)}`}>{section.heading}</h2>
-          {section.paragraphs?.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-          {section.steps ? (
-            <ol className="product-steps">
-              {section.steps.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
-          ) : null}
-        </section>
-      ))}
-
-      <div className="product-links actions">
-        <a className="button button-primary" href={product.website} target="_blank" rel="noopener noreferrer">
-          Visit {product.website.replace('https://', '')}
-          <span className="visually-hidden"> (opens in a new tab)</span>
-        </a>
-        <Link className="button button-text" href="/#contact">
-          Contact me
-        </Link>
-      </div>
+    <main id="main" className={`wrap product-page case-${product.slug}`}>
+      <Motion />
+      <a className="breadcrumb" href="/#work"><span aria-hidden="true">←</span> Back to selected work</a>
+      <header className="case-hero"><div className="case-kicker"><p className="micro">{product.name.toUpperCase()} / AN AURA LABS PRODUCT</p><span className="case-status">{product.slug === 'seed' ? 'PRE-LAUNCH' : 'IN DEVELOPMENT'}</span></div><h1>{title}<br /><em>{titleAccent}</em></h1><div className="case-summary"><p>{product.summary}</p><a className="button button-lime" href={product.website} target="_blank" rel="noopener noreferrer">Visit {product.name} <Arrow /><span className="sr-only">(opens in a new tab)</span></a></div></header>
+      <div className="case-intro-band"><div><p className="micro">MY WORK</p><p>Product & engineering</p></div><div><p className="micro">FOCUS</p><p>{focus}</p></div><div><p className="micro">BUILT UNDER</p><p>Aura Labs · Columbus, Ohio</p></div></div>
+      <div className="case-editorial"><nav className="case-sidebar" aria-label="On this page"><p className="micro">IN THIS STORY</p>{sections.map((section, i) => <a href={`#${slugify(section.heading)}`} key={section.heading}>0{i + 1} / {section.heading}</a>)}</nav><div>{sections.map(section => <section key={section.heading} id={slugify(section.heading)} className="case-section" aria-labelledby={`${slugify(section.heading)}-heading`} data-reveal><h2 id={`${slugify(section.heading)}-heading`}>{section.heading}</h2>{section.paragraphs?.map(p => <p key={p}>{p}</p>)}{section.steps && <ol>{section.steps.map(s => <li key={s}>{s}</li>)}</ol>}</section>)}<div className="case-next"><p className="micro">KEEP EXPLORING</p><a href={`/work/${other.slug}/`}>{other.name} <Arrow /></a></div></div></div>
     </main>
   )
 }
-
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
-}
+function slugify(value: string) { return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') }

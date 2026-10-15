@@ -63,7 +63,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#050505',
+  themeColor: '#10120f',
   width: 'device-width',
   initialScale: 1,
 }
@@ -92,15 +92,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         {children}
         <footer className="site-footer">
-          <div className="container footer-inner">
-            <p>
-              © {new Date().getFullYear()} Rayyan Sharief. Columbus, Ohio.
-            </p>
-            <p>
-              <a href={profile.resumePath}>Resume (PDF)</a>
-              <span aria-hidden="true"> · </span>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </p>
+          <div className="wrap footer-inner">
+            <p className="footer-mark">rayyan<span>.</span></p>
+            <p>© {new Date().getFullYear()} Rayyan Sharief. Built with curiosity.</p>
+            <div className="footer-right"><span>Columbus, Ohio</span><a href="#main">Back to top ↑</a></div>
           </div>
         </footer>
         <script

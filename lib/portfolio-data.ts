@@ -33,7 +33,7 @@ export const grub: ProductDetail = {
   logoAlt: 'Grub logo: a cream lowercase g on a coral background',
   accent: 'coral',
   summary:
-    'Clips is Grub’s flagship. Food creators post restaurant reviews, and Grub connects each review to the specific restaurant branch it covers, so viewers can find the place they just watched.',
+    'A food discovery product built around creator videos, connected to specific restaurant locations. I am building Grub to bring viewers, creators, and restaurants into the same experience.',
 }
 
 export const seed: ProductDetail = {
@@ -46,7 +46,7 @@ export const seed: ProductDetail = {
   logoAlt: 'Seed logo: two leaves, one pale green and one dark green',
   accent: 'green',
   summary:
-    'Seed calculates a round-up on each eligible purchase, up to the next whole dollar, and accumulates those amounts for a cause the donor chooses. Money is collected only in a donation the donor authorizes, within a monthly limit the donor sets.',
+    'A round-up giving app designed to make sadaqah a steady habit. Eligible purchases generate calculated round-ups for a cause the donor chooses, collected only through an authorized donation.',
 }
 
 export type WorkItem = {
@@ -193,3 +193,4 @@ export const skillGroups: { label: string; items: string[] }[] = [
     items: ['Salesforce Flow Builder', 'PowerApps', 'SharePoint'],
   },
 ]
+

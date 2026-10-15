@@ -1,244 +1,65 @@
-import Link from 'next/link'
+import { Arrow, Asterisk, OrbitalSculpture } from '@/components/visuals'
+import { Motion } from '@/components/motion'
 import { CopyEmail } from '@/components/copy-email'
-import {
-  earlierExperiences,
-  experiences,
-  grub,
-  profile,
-  seed,
-  selectedWork,
-  skillGroups,
-} from '@/lib/portfolio-data'
+import { earlierExperiences, experiences, profile, skillGroups } from '@/lib/portfolio-data'
+
+const otherWork = [
+  { name: 'iWaqf', category: 'FINTECH · WAHED', description: 'Reliable money movement for digital endowments. Stripe settlement, PostgreSQL, and access controls across 22K+ transactions.', outcome: '£741K managed by the platform', href: 'https://iwaqf.io' },
+  { name: 'Swyft Payments', category: 'CO-FOUNDED · PAYMENTS', description: 'Tap-to-donate terminals that make contributing take about two seconds. Hardware, payments, and the business behind both.', outcome: '$30K+ raised from 2.5K+ donors', href: 'https://www.paywithswyft.com' },
+  { name: 'HOPE AI', category: 'AI · COMMUNITY', description: 'A faith-informed mental health chatbot built with Supabase, OpenAI APIs, and multi-agent workflows.', outcome: 'Built for a community of 500+ users', href: 'https://hopelabs.org' },
+  { name: 'PlanMyDegree', category: 'SOFTWARE · EDUCATION', description: 'Less guesswork in graduation planning. Course lookup, prerequisite validation, and requirement tracking, built with a team of six.', outcome: 'Built for 500+ Ohio State students', href: '' },
+]
 
 export default function HomePage() {
   return (
     <main id="main">
-      <section className="hero container" aria-labelledby="hero-heading">
-        <p className="eyebrow">Software engineer and product builder · {profile.location}</p>
-        <h1 id="hero-heading" className="hero-name">
-          Rayyan<br /><em>Sharief.</em>
-        </h1>
-        <p className="lede">
-          I build backend systems, fintech infrastructure, and products of my own.
-        </p>
-        <p className="lede-secondary">
-          Software engineer intern at Wahed Invest. Data Analytics at Ohio State.
-          Building Grub and Seed under Aura Labs.
-        </p>
-        <div className="actions">
-          <a className="button button-primary" href="#work">
-            See my work
-          </a>
-          <a className="button button-secondary" href={profile.resumePath}>
-            Resume (PDF)
-          </a>
-          <a className="button button-text" href={`mailto:${profile.email}`}>
-            Email me
-          </a>
-        </div>
-        <div className="hero-socials">
-          <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-        </div>
-      </section>
-
-      <section id="work" className="section container" aria-labelledby="work-heading">
-        <header className="section-head">
-          <p className="eyebrow"><span>01 /</span> Products</p>
-          <h2 id="work-heading">What I am<br /><em>building.</em></h2>
-        </header>
-
-        <article className="product product-flagship" aria-labelledby="grub-heading">
-          <div className="product-mark">
-            <img src={grub.logo} alt={grub.logoAlt} width={112} height={112} />
-          </div>
-          <div className="product-body">
-            <p className="product-status">Flagship · {grub.status}</p>
-            <h3 id="grub-heading">{grub.name}</h3>
-            <p className="product-tagline">{grub.tagline}</p>
-            <p>
-              Clips is the center of Grub. Creators submit restaurant review videos, Grub links each video to
-              the specific restaurant branch it covers, and viewers can open that restaurant from the video.
-              Restaurant and dish information appears where it is available, including halal details where they
-              exist. Grub does not certify food, and a video is never treated as proof that a restaurant is
-              halal.
-            </p>
-            <div className="actions">
-              <Link className="button button-primary" href="/work/grub">
-                Read the Grub case study
-              </Link>
-              <a className="button button-text" href={grub.website} target="_blank" rel="noopener noreferrer">
-                Visit usegrub.app
-                <span className="visually-hidden"> (opens in a new tab)</span>
-              </a>
+      <Motion />
+      <section className="hero wrap" aria-labelledby="hero-heading">
+        <div className="hero-topline"><p className="micro"><span className="status-dot" /> RAYYAN SHARIEF / SOFTWARE & PRODUCTS</p><p className="micro hero-location">COLUMBUS, OHIO <span>↗</span></p></div>
+        <div className="hero-composition">
+          <div className="hero-text">
+            <h1 id="hero-heading"><span>Engineer by craft.</span><span className="hero-accent">Builder by instinct<span className="title-period">.</span></span></h1>
+            <div className="hero-bottom">
+              <p>I turn complex problems into things people can use. From financial systems to products of my own, I like taking an idea all the way.</p>
+              <a className="button button-lime" href="#work">Explore my work <Arrow /></a>
             </div>
           </div>
-        </article>
-
-        <article className="product product-seed" aria-labelledby="seed-heading">
-          <div className="product-mark">
-            <img src={seed.logo} alt={seed.logoAlt} width={112} height={112} />
-          </div>
-          <div className="product-body">
-            <p className="product-status">{seed.status}</p>
-            <h3 id="seed-heading">{seed.name}</h3>
-            <p className="product-tagline">{seed.tagline}</p>
-            <p>
-              Seed calculates a round-up on each eligible purchase, up to the next whole dollar, and accumulates
-              those amounts for a cause the donor chooses. Money is collected only in a donation the donor
-              authorizes, within a monthly limit the donor sets. Round-ups are voluntary sadaqah, not zakat.
-            </p>
-            <div className="actions">
-              <Link className="button button-primary" href="/work/seed">
-                Read the Seed product page
-              </Link>
-              <a className="button button-text" href={seed.website} target="_blank" rel="noopener noreferrer">
-                Visit givewithseed.com
-                <span className="visually-hidden"> (opens in a new tab)</span>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <div className="more-work">
-          <h3 className="subhead">Other work</h3>
-          <ul className="work-list">
-            {selectedWork.map((item) => (
-              <li key={item.name} className="work-row">
-                <div className="work-name">
-                  <p className="work-title">{item.name}</p>
-                  <p className="work-kind">{item.kind}</p>
-                </div>
-                <div className="work-detail">
-                  <p>{item.description}</p>
-                  {item.href ? (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer">
-                      {item.hrefLabel}
-                      <span className="visually-hidden"> (opens in a new tab)</span>
-                    </a>
-                  ) : null}
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div className="hero-art" data-tilt aria-hidden="true"><OrbitalSculpture /><div className="art-caption"><span>CURIOUS BY DEFAULT.</span><span>ALWAYS BUILDING.</span></div></div>
         </div>
+        <div className="hero-foot"><p>Currently engineering at <strong>Wahed Invest</strong><br />Studying Data Analytics at <strong>Ohio State</strong></p><a href="#work" className="scroll-link">SCROLL TO EXPLORE <span>↓</span></a><div className="hero-socials"><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <Arrow /></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <Arrow /></a></div></div>
       </section>
-
-      <section id="experience" className="section container" aria-labelledby="experience-heading">
-        <header className="section-head">
-          <p className="eyebrow"><span>02 /</span> Experience</p>
-          <h2 id="experience-heading">Where I have<br /><em>worked.</em></h2>
-        </header>
-        <ol className="experience-list">
-          {experiences.map((job) => (
-            <li key={job.id} className="experience-row">
-              <div className="experience-meta">
-                <p className="experience-dates">{job.dates}</p>
-                <p className="experience-location">{job.location}</p>
-              </div>
-              <div className="experience-body">
-                <h3>
-                  {job.role}, <span>{job.company}</span>
-                </h3>
-                <ul>
-                  {job.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ol>
-        <div className="earlier-experience">
-          <h3 className="subhead">Earlier experience</h3>
-          <ul className="earlier-list">
-            {earlierExperiences.map((job) => (
-              <li key={job.id} className="earlier-row">
-                <p className="earlier-title">
-                  {job.role}, <span>{job.company}</span>
-                </p>
-                <p className="earlier-meta">
-                  {job.dates} · {job.location}
-                </p>
-                <ul>
-                  {job.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
+      <div className="experience-strip wrap" aria-label="Organizations where I have worked"><span className="micro">A FEW PLACES<br />I&apos;VE CONTRIBUTED</span><div><span>wahed<span className="logo-dot">.</span></span><span className="bmw-word">BMW GROUP</span><span className="jpm-word">J.P. Morgan</span><span className="odot-word">OHIO DOT</span></div></div>
+      <section id="work" className="section wrap" aria-labelledby="work-heading">
+        <div className="section-heading" data-reveal><p className="micro section-label"><span>01</span> INDEPENDENT PRODUCTS</p><div><h2 id="work-heading">Made from<br /><em>what if.</em></h2><p>Two ideas I couldn&apos;t leave alone.<br />Now taking shape under <a href={profile.auraLabs} target="_blank" rel="noopener noreferrer">Aura Labs <span className="sr-only">(opens in a new tab)</span>↗</a>.</p></div></div>
+        <div className="product-grid">
+          <article className="project-panel seed-panel" data-reveal aria-labelledby="seed-title">
+            <div className="panel-top"><span className="project-wordmark">seed<span>↗</span></span><span className="panel-status">PRE-LAUNCH</span></div>
+            <div className="panel-art seed-art" aria-hidden="true"><div className="seed-petal petal-one" /><div className="seed-petal petal-two" /><div className="seed-stem" /><div className="seed-orbit" /><span className="art-number">A LITTLE. OFTEN.</span></div>
+            <div className="panel-copy"><p className="micro">FINTECH / EVERYDAY GIVING</p><h3 id="seed-title">Small change.<br />Lasting impact.</h3><p>A round-up giving app that makes sadaqah part of everyday life. Choose a cause, set a limit, and build a habit of giving.</p></div>
+            <a className="panel-link" href="/work/seed/"><span>Meet Seed</span><span className="circle-arrow"><Arrow /></span></a>
+          </article>
+          <article className="project-panel grub-panel" data-reveal aria-labelledby="grub-title">
+            <div className="panel-top"><span className="project-wordmark">grub<span>↗</span></span><span className="panel-status">IN DEVELOPMENT</span></div>
+            <div className="panel-art grub-art" aria-hidden="true"><div className="grub-ripple ripple-one"/><div className="grub-ripple ripple-two"/><div className="grub-ripple ripple-three"/><div className="grub-play"><svg viewBox="0 0 80 80"><path d="M31 20 60 40 31 60Z" fill="currentColor" /></svg></div><span className="art-number">WATCH. DISCOVER. GO.</span></div>
+            <div className="panel-copy"><p className="micro">CREATORS / FOOD DISCOVERY</p><h3 id="grub-title">Good food.<br />Found through people.</h3><p>Restaurant discovery built around creator videos. Clips connects the food you see to the exact place you can find it.</p></div>
+            <a className="panel-link" href="/work/grub/"><span>Explore Grub</span><span className="circle-arrow"><Arrow /></span></a>
+          </article>
         </div>
+        <div className="more-work-head" data-reveal><h3>More things I&apos;ve helped build.</h3><span className="micro">SYSTEMS. PRODUCTS. REAL-WORLD PROBLEMS.</span></div>
+        <div className="other-work-grid">{otherWork.map((work, index) => <article className="other-project" key={work.name} data-reveal><div className="other-top"><span className="micro">0{index + 1} / {work.category}</span>{work.href ? <a href={work.href} target="_blank" rel="noopener noreferrer" className="small-arrow" aria-label={`Visit ${work.name} (opens in a new tab)`}><Arrow /></a> : <Asterisk className="small-star" />}</div><h4>{work.name}</h4><p>{work.description}</p><span className="project-outcome">{work.outcome}</span></article>)}</div>
       </section>
-
-      <section id="about" className="section container about" aria-labelledby="about-heading">
-        <header className="section-head">
-          <p className="eyebrow"><span>03 /</span> About</p>
-          <h2 id="about-heading">A little<br /><em>about me.</em></h2>
-        </header>
-        <div className="about-body">
-          <p>
-            I am a Data Analytics student at The Ohio State University who learns best by taking hard problems
-            all the way to production. Most of my work sits where money, data, and users meet: settlement flows,
-            ledgers, access rules for financial data, and tools that help teams make decisions.
-          </p>
-          <p>
-            Across internships at Wahed Invest, BMW Group Financial Services, JPMorgan Chase &amp; Co., and the
-            Ohio Department of Transportation, I have worked across backend engineering, data analysis, and
-            enterprise automation. That ranges from idempotent Stripe settlement to AWS SageMaker pipelines for
-            document search.
-          </p>
-          <p>
-            Outside of school and work, I build products under Aura Labs, an independent company based in
-            Columbus. I care about what a product does for the person using it, and I want the business and
-            technical decisions to hold up together. When I am not building, I play soccer and travel.
-          </p>
-        </div>
-
-        <div className="skills">
-          <h3 className="subhead">Skills</h3>
-          <dl className="skill-groups">
-            {skillGroups.map((group) => (
-              <div key={group.label} className="skill-group">
-                <dt>{group.label}</dt>
-                <dd>{group.items.join(', ')}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+      <section id="experience" className="section experience-section wrap" aria-labelledby="experience-heading">
+        <div className="section-heading" data-reveal><p className="micro section-label"><span>02</span> EXPERIENCE</p><div><h2 id="experience-heading">Different teams.<br /><em>Same curiosity.</em></h2><p>Backend engineering, data, and AI.<br />Learning by doing work that matters.</p></div></div>
+        <div className="career-list">{experiences.map((job, i) => <details className="career-item" key={job.id} open={i === 0} data-reveal><summary><span className="career-index">0{i + 1}</span><span className="career-company"><span>{job.company.replace(', Rail Division', '')}</span><span className="career-role">{job.role}</span></span><span className="career-date">{job.dates.replace(' to ', ' – ')}{i === 0 && <span className="current-tag">CURRENT</span>}</span><span className="career-toggle" aria-hidden="true">+</span></summary><div className="career-detail"><p className="career-location">{job.location}{job.id === 'odot' && ' · Rail Division'}</p><ul>{job.bullets.map(b => <li key={b}>{b}</li>)}</ul></div></details>)}</div>
+        <div className="earlier-career" data-reveal><p className="micro">BEFORE THAT</p>{earlierExperiences.map(job => <details key={job.id}><summary><span>{job.company}</span><span>{job.role}</span><span className="early-date">{job.dates.replace(' to ', ' – ')}</span><span aria-hidden="true">+</span></summary><ul>{job.bullets.map(b => <li key={b}>{b}</li>)}</ul></details>)}</div>
+        <div className="outcomes" data-reveal><div><strong>22K<span>+</span></strong><p>Transactions covered by<br />iWaqf settlement work</p></div><div><strong>15<span>+ hrs</span></strong><p>Saved each week by<br />BMW&apos;s Request2PO</p></div><div><strong>40<span>%</span></strong><p>Lower retrieval latency<br />at JPMorgan Chase</p></div></div>
       </section>
-
-      <section id="contact" className="section container contact" aria-labelledby="contact-heading">
-        <header className="section-head">
-          <p className="eyebrow">Contact</p>
-          <h2 id="contact-heading">Let&apos;s<br /><em>connect.</em></h2>
-        </header>
-        <p className="contact-lede">
-          Email is the best way to reach me about roles, collaborations, or products.
-        </p>
-        <a className="contact-email" href={`mailto:${profile.email}`}>
-          {profile.email}
-        </a>
-        <CopyEmail email={profile.email} />
-        <ul className="contact-links">
-          <li>
-            <a href={profile.github} target="_blank" rel="noopener noreferrer">
-              GitHub
-              <span className="visually-hidden"> (opens in a new tab)</span>
-            </a>
-          </li>
-          <li>
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn
-              <span className="visually-hidden"> (opens in a new tab)</span>
-            </a>
-          </li>
-          <li>
-            <a href={profile.resumePath}>Resume (PDF)</a>
-          </li>
-        </ul>
+      <section id="about" className="section about-section wrap" aria-labelledby="about-heading">
+        <div className="about-heading" data-reveal><p className="micro section-label"><span>03</span> THE PERSON BEHIND THE WORK</p><h2 id="about-heading">Serious about<br />the work.<br /><em>Curious about<br />everything.</em></h2><Asterisk className="about-star" /></div>
+        <div className="about-content" data-reveal><p className="about-lead">I&apos;m Rayyan, a software engineer, product builder, and Data Analytics student at The Ohio State University.</p><p>I like the whole problem: how a system works, what makes it useful, and how to build a business around it. That&apos;s taken me from financial infrastructure and enterprise AI to starting products under Aura Labs.</p><p>Fintech is a particular interest. I care about making money work better for people, whether that means a reliable settlement flow or a simpler way to give.</p><p className="personal-note">Away from the keyboard? Usually soccer, travel, or another idea I&apos;ve convinced myself is worth trying.</p><div className="about-meta"><span><span className="status-dot" /> Columbus, Ohio</span><span>Ohio State · Class of 2027</span></div></div>
+        <div className="toolkit" data-reveal><div className="toolkit-intro"><p className="micro">THE TOOLKIT</p><p>The tools change.<br />The habit of figuring<br />things out stays.</p></div><dl>{skillGroups.map(group => <div key={group.label}><dt>{group.label}</dt><dd>{group.items.map(item => <span key={item}>{item}</span>)}</dd></div>)}</dl></div>
       </section>
+      <section id="contact" className="contact-section" aria-labelledby="contact-heading"><div className="wrap"><div className="contact-top"><p className="micro">04 / START A CONVERSATION</p><Asterisk /></div><h2 id="contact-heading" data-reveal>Something<br />on your <em>mind?</em></h2><div className="contact-bottom"><div><p>A role, an idea, or a good conversation.<br />I&apos;d like to hear about it.</p><a className="email-link" href={`mailto:${profile.email}`}>{profile.email} <Arrow /></a><CopyEmail email={profile.email} /></div><div className="contact-socials"><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <Arrow /></a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <Arrow /></a><a href={profile.resumePath} target="_blank" rel="noopener noreferrer">Resume <Arrow /></a></div></div></div></section>
     </main>
   )
 }
-

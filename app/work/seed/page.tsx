@@ -1,66 +1,16 @@
 import type { Metadata } from 'next'
 import { ProductPage } from '@/components/product-page'
 import { seed } from '@/lib/portfolio-data'
-
 export const metadata: Metadata = {
-  title: 'Seed: automatic giving from everyday purchases',
-  description:
-    'Seed is a pre-launch round-up giving product. Purchases round up to the next whole dollar, within a monthly limit the donor sets. Sign-ups are open for early access.',
+  title: 'Seed | Everyday giving',
+  description: 'Building a simpler habit of sadaqah through everyday purchases. Seed is a pre-launch round-up giving app by Rayyan Sharief.',
   alternates: { canonical: '/work/seed/' },
-  openGraph: {
-    title: 'Seed: automatic giving from everyday purchases | Rayyan Sharief',
-    description: 'A pre-launch round-up giving product with a donor-set monthly limit.',
-    url: '/work/seed',
-  },
 }
-
 export default function SeedPage() {
-  return (
-    <ProductPage
-      product={seed}
-      title="Seed turns everyday purchases into giving"
-      screenshots={[
-        {
-          src: '/projects/seed/reconciliation-signup.png',
-          alt: 'Seed account sign-up form at step 3 of 6, with empty name, email, and password fields',
-          caption: 'Early access sign-up. Shown with empty fields, with no personal details.',
-          aspectRatio: '319 / 817',
-        },
-      ]}
-      sections={[
-        {
-          heading: 'The problem',
-          paragraphs: [
-            'Giving often waits for a moment of planning. Seed moves it into ordinary spending, so a donor does not have to decide again each time they buy something.',
-          ],
-        },
-        {
-          heading: 'How it works',
-          steps: [
-            'The donor chooses a cause and sets a monthly limit.',
-            'Seed calculates the round-up on each eligible purchase, up to the next whole dollar. For example, a $6.14 purchase rounds up to $7.00, and the $0.86 difference is added to the donor’s accumulated round-ups.',
-            'Accumulated round-ups are collected only in a donation the donor authorizes. The monthly limit caps what the donor sends.',
-          ],
-        },
-        {
-          heading: 'Rules',
-          paragraphs: [
-            'Round-ups are voluntary sadaqah, not zakat. Donations go only to organizations that have passed review and verification.',
-          ],
-        },
-        {
-          heading: 'What is built',
-          paragraphs: [
-            'Money movement is designed around an append-only, double-entry ledger. Each round-up or recurring gift is recorded as balanced debit and credit entries before any money is disbursed.',
-          ],
-        },
-        {
-          heading: 'Current stage',
-          paragraphs: [
-            'Seed is pre-launch, and early access sign-ups are open. Live giving begins once payments and organization verification are in place.',
-          ],
-        },
-      ]}
-    />
-  )
+  return <ProductPage product={seed} title="Giving, built into" titleAccent="everyday life." focus="Fintech & consistent giving" sections={[
+    { heading: 'The idea', paragraphs: ['Giving is easy to put off when it needs a new decision every time. Seed starts with a smaller question: what if doing a little good became part of something you already do?', 'The idea is simple. Turn the difference between a purchase and the next dollar into voluntary sadaqah for a cause you choose. Small amounts, consistently.'] },
+    { heading: 'How it works', steps: ['Choose a cause and set a monthly limit that works for you.', 'Seed calculates the round-up on eligible purchases. A $6.14 purchase adds $0.86 to your accumulated round-ups.', 'Those round-ups accumulate until an authorized donation collection. Calculating a round-up does not move money. Your monthly limit caps your giving.'] },
+    { heading: 'Building trust', paragraphs: ['A giving product has to be clear about what is happening to your money. Seed keeps calculated round-ups separate from collected donations, and makes pausing or adjusting your giving part of the core experience.', 'The money-movement design uses an append-only, double-entry ledger so financial entries can be traced and reconciled. Donations are intended for reviewed, verified organizations. Round-ups are voluntary sadaqah, not zakat.'] },
+    { heading: 'Where it stands', paragraphs: ['Seed is pre-launch, with early access sign-ups open. The initial focus is round-up giving. Live donations depend on completing payments and organization verification.', 'I am building it under Aura Labs with a straightforward goal: make consistent giving easier to start and easier to keep doing.'] },
+  ]} />
 }
